@@ -20,15 +20,14 @@ const thirdPartyIgnorePatterns = [
 module.exports = {
   ...tsjPreset,
   preset: "jest-expo",
+  setupFilesAfterEnv: ["./jest-setup-after-env.js"],
   transformIgnorePatterns: [
     `<rootDir>/node_modules/(?!${thirdPartyIgnorePatterns.join("|")})`,
     "jest-runner",
   ],
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.maestro/", "@react-native"],
   setupFiles: ["<rootDir>/test/setup.ts"],
-  transform:{
-    '^.+\\.test.tsx?$': ['ts-jest', {
-      tsconfig: '<rootDir>/test/test-tsconfig.json'
-    }]
-  }
+  transform: {
+    "^.+\\.test.tsx?$": ["babel-jest"],
+  },
 }
